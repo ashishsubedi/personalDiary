@@ -10,8 +10,8 @@ const oidc = new ExpressOIDC({
     client_id: '0oagzv27xk0sIZqY6356',
     client_secret: 'dITmzJEznox6K2np2K2khfJwAgkdejOl5_xxnpLR',
     scope: 'openid profile email',
-    routes:{
-        login:{
+    routes: {
+        login: {
             path: '/users/login'
         }
     }
@@ -20,6 +20,7 @@ const oidc = new ExpressOIDC({
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -30,8 +31,8 @@ app.use(session({
 app.use(oidc.router);
 
 app.use((req, res, next) => {
-    if (req.userinfo) {
-        res.locals.user = req.user = req.userinfo;
+    if (req.userContext) {
+        res.locals.user = req.user = req.userContext.userinfo;
         return next();
     }
     return next();
@@ -43,11 +44,29 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 app.get('/users/login/callback', (req, res) => {
-    res.render('dashboard');
+
+    console.log("That");
+    res.redirect('/dashboard');
 });
-app.get('/dashboard',oidc.ensureAuthenticated(),(req,res)=>{
-    res.render('dashboard');
+app.get('/dashboard', oidc.ensureAuthenticated(), (req, res) => {
+    console.log(res.locals.user);
+    res.render('dashboard', {
+        user: req.user
+    });
 })
+
+app.get('/users/logout', (req, res) => {
+
+
+    // Remove the local session
+    req.logout();
+
+    // Location to redirect to after the logout has been performed. (Must be whitelisted)
+    const postLogoutUri = 'http://localhost:3000/';
+
+ 
+    res.redirect(postLogoutUri);
+});
 
 oidc.on('ready', () => {
     app.listen(PORT, () => {
@@ -56,6 +75,6 @@ oidc.on('ready', () => {
 });
 oidc.on('error', err => {
     console.log('Unable to configure ExpressOIDC', err);
-  });
+});
 
 

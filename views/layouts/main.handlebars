@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Diary App</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <title>Diary App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <div class="top-bar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" title="Expresso">okta-express-login-portal</a></h5>
-    <nav class="my-2 my-md-0 mr-md-3"><a class="p-2 text-dark" href="/" title="Home">Home</a><a class="p-2 text-dark" href="/users/login">Log In / Register</a>
+  <div
+    class="top-bar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" title="index">Diary</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">{{#if user}}
+      <a class="p-2 text-dark" href="/dashboard" title="Dashboard">Home</a>
+      <a class="p-2 text-dark" href="/users/logout">LogOut</a>
+      {{else}} <a class="p-2 text-dark" href="/users/login">Log In / Register</a>
+      {{/if}}
     </nav>
   </div>
-  <div class="container">
-      {{{body}}}
-  </div>
+  {{{body}}}
+
 </body>
+
 </html>

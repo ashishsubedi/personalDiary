@@ -1,0 +1,69 @@
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+    height: 100%;
+    font-family: 'Merriweather', serif;
+}
+
+.container-fluid {
+    height: 100%;
+    background-color: darkgray
+}
+#sidebar-left {
+    align-content: center;
+    align-items: center;
+    background-color: gray;
+	display: inline-block;
+    vertical-align: top;
+    padding-top: 20px;
+	height: 100%;
+	width: 200px;
+    overflow-x: hidden;
+    border-style: solid;
+    border-width: auto;
+    position: absolute;
+    
+}
+#content {
+    align-content: center;
+    align-items: center;
+	display: inline-block;
+	vertical-align: top;
+	max-height: 900px;
+    margin-left: 250px;
+    margin-right: 165px;
+    width: 700px;
+    overflow-x: auto;
+    min-width: 500px;
+    max-width: 1200px;
+    background-color: #cbcfd6;
+
+
+}
+#title{
+    width: 100%;
+}
+#contentCard{
+    align-self: auto;
+    margin: 2%;
+    
+    width: auto;
+    margin: 20px;
+    min-height: 750px;
+    overflow-x: auto;
+    
+    
+}
+#contentTextArea{
+    border: 0px;
+    font-size: 18px;
+}
+
+#title{
+    margin: 2px;
+    height: 70px;
+    font-size: 25px;
+}
